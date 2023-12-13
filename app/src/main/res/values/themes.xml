@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.BuddyNotes" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/c10</item>
     </style>
 
     <style name="Theme.BuddyNotes" parent="Base.Theme.BuddyNotes" />

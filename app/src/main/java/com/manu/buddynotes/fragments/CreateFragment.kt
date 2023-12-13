@@ -19,7 +19,7 @@ import java.util.Calendar
 class CreateFragment : Fragment() {
     private val binding by lazy { FragmentCreateBinding.inflate(layoutInflater) }
     private var priority = "1"
-    private val noteViewModel:NotesViewModel by viewModels()
+    private val noteViewModel: NotesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,26 +31,20 @@ class CreateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.pGreen.setImageResource(R.drawable.ic_done)
+
         binding.apply {
-           fabCreate.setOnClickListener {
+            fabCreate.setOnClickListener {
                 validateNotes()
             }
+
+
             setPriorityClickListener(pGreen, "1")
-
-            pGreen.setOnClickListener {  }
-            setPriorityClickListener(pGreen, "1")
-
-            pYellow.setOnClickListener {
-                setPriorityClickListener(pYellow, "2")
-            }
-
-            pRed.setOnClickListener {
-                setPriorityClickListener(pRed, "3")
-            }
+            setPriorityClickListener(pYellow, "2")
+            setPriorityClickListener(pRed, "3")
 
 
         }
-
 
 
     }
@@ -83,9 +77,9 @@ class CreateFragment : Fragment() {
             val title = etTitle.text.toString()
             val subTitle = etSubTitle.text.toString()
             val note = etNotes.text.toString()
-            val date = Calendar.getInstance().time.toString()
+            val date = Calendar.getInstance().time
 
-            val noteData = Notes(null, title, subTitle, note, date, priority)
+            val noteData = Notes(null, title, subTitle, note, date.toString(), priority)
 
             noteViewModel.insertNotes(noteData)
             Toast.makeText(requireContext(), "Notes Created", Toast.LENGTH_SHORT).show()

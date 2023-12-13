@@ -3,9 +3,11 @@ package com.manu.buddynotes.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.manu.buddynotes.R
 import com.manu.buddynotes.databinding.ItemNotesBinding
+import com.manu.buddynotes.fragments.HomeFragmentDirections
 import com.manu.buddynotes.model.Notes
 
 class NotesAdapter(val context: Context, val noteList: List<Notes>):
@@ -38,6 +40,11 @@ RecyclerView.Adapter<NotesAdapter.NotesVH>(){
             "3" -> {
                 holder.binding.ivPriority.setImageResource(R.drawable.red)
             }
+        }
+
+        holder.itemView.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToEditFragment(item)
+            Navigation.findNavController(it).navigate(action)
         }
 
     }
