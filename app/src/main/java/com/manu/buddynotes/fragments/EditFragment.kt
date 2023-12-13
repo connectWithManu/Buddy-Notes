@@ -43,13 +43,13 @@ class EditFragment : Fragment() {
 
         when(noteData.data.priority) {
             "1" -> {
-                binding.pGreen.setImageResource(R.drawable.green)
+                binding.pGreen.setImageResource(R.drawable.ic_done)
             }
             "2" -> {
-                binding.pYellow.setImageResource(R.drawable.yellow)
+                binding.pYellow.setImageResource(R.drawable.ic_done)
             }
             "3" -> {
-                binding.pRed.setImageResource(R.drawable.red)
+                binding.pRed.setImageResource(R.drawable.ic_done)
             }
         }
 

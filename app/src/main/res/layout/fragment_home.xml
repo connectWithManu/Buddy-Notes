@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout">
 
-    </SearchView>
+    </androidx.appcompat.widget.SearchView>
 
     <ImageButton
         android:id="@+id/btAll"
@@ -86,10 +86,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="2dp"
-        android:background="@drawable/green"
+        android:background="@drawable/shape_circle"
         android:text="Low"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/c10"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/btAll"
         app:layout_constraintEnd_toStartOf="@+id/btMedium"
@@ -103,10 +103,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/yellow"
+        android:background="@drawable/shape_circle"
         android:text="Medium"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/c10"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/btLow"
         app:layout_constraintEnd_toStartOf="@+id/btHigh"
@@ -119,10 +119,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/red"
+        android:background="@drawable/shape_circle"
         android:text="High"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/c10"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/btMedium"
         app:layout_constraintEnd_toEndOf="parent"

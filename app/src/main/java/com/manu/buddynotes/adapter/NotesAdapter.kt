@@ -10,8 +10,13 @@ import com.manu.buddynotes.databinding.ItemNotesBinding
 import com.manu.buddynotes.fragments.HomeFragmentDirections
 import com.manu.buddynotes.model.Notes
 
-class NotesAdapter(val context: Context, val noteList: List<Notes>):
+class NotesAdapter(val context: Context, var noteList: List<Notes>):
 RecyclerView.Adapter<NotesAdapter.NotesVH>(){
+
+    fun filteredNotes(newNoteList: List<Notes>) {
+        noteList = newNoteList
+        notifyDataSetChanged()
+    }
     inner class NotesVH(val binding: ItemNotesBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesVH {
