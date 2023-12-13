@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.viewModels
@@ -140,12 +141,16 @@ class HomeFragment : Fragment() {
     private fun filteredList(newText: String?) {
         val queryText = newText?.lowercase()
         val filteredList = ArrayList<Notes>()
-        for(notes in searchNotesList) {
-            if(notes.title.lowercase().contains(queryText!!) || notes.subTitle.lowercase().contains(queryText)) {
-                filteredList.add(notes)
+        if(searchNotesList.isEmpty()) {
+            Toast.makeText(requireContext(), "Note list is Empty", Toast.LENGTH_SHORT).show()
+        } else {
+            for(notes in searchNotesList) {
+                if(notes.title.lowercase().contains(queryText!!) || notes.subTitle.lowercase().contains(queryText)) {
+                    filteredList.add(notes)
+                }
             }
-
+            adapter.filteredNotes(filteredList)
         }
-        adapter.filteredNotes(filteredList)
+
     }
 }
