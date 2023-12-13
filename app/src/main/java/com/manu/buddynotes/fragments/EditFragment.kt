@@ -34,8 +34,8 @@ class EditFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.etNotes.setText(noteData.data.notes)
-        binding.etTitle.setText(noteData.data.notes)
-        binding.etSubTitle.setText(noteData.data.notes)
+        binding.etTitle.setText(noteData.data.title)
+        binding.etSubTitle.setText(noteData.data.subTitle)
 
         setPriorityClickListener(binding.pGreen, "1")
         setPriorityClickListener(binding.pYellow, "2")

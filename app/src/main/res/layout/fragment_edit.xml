@@ -92,7 +92,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/green"
+        android:background="@drawable/green"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
@@ -101,7 +101,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="21dp"
-        android:src="@drawable/yellow"
+        android:background="@drawable/yellow"
         app:layout_constraintBottom_toBottomOf="@+id/pGreen"
         app:layout_constraintStart_toEndOf="@+id/pGreen"
         app:layout_constraintTop_toTopOf="@+id/pGreen" />
@@ -111,7 +111,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="21dp"
-        android:src="@drawable/red"
+        android:background="@drawable/red"
         app:layout_constraintBottom_toBottomOf="@+id/pYellow"
         app:layout_constraintStart_toEndOf="@+id/pYellow"
         app:layout_constraintTop_toTopOf="@+id/pYellow" />

@@ -7,6 +7,9 @@ import com.manu.buddynotes.notesdb.NotesDao
 class NotesRepository(private val dao: NotesDao) {
 
     fun getNotes(): LiveData<List<Notes>> = dao.getAllNotes()
+    fun getLowNotes(): LiveData<List<Notes>> = dao.getLowNotes()
+    fun getMediumNotes(): LiveData<List<Notes>> = dao.getMediumNotes()
+    fun getHighNotes(): LiveData<List<Notes>> = dao.getHighNotes()
 
     fun insertNotes(notes: Notes) {
         dao.insertNotes(notes)
