@@ -12,9 +12,9 @@ abstract class NotesDatabase: RoomDatabase() {
 
     companion object {
         @Volatile
-        private var INSTANCE: RoomDatabase? = null
+        private var INSTANCE: NotesDatabase? = null
 
-        fun getInstance(context: Context): RoomDatabase {
+        fun getInstance(context: Context): NotesDatabase {
             val temp = INSTANCE
             if(temp != null) {
                 return temp

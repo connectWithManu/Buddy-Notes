@@ -1,60 +1,96 @@
 package com.manu.buddynotes.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.manu.buddynotes.R
+import com.manu.buddynotes.databinding.FragmentCreateBinding
+import com.manu.buddynotes.model.Notes
+import com.manu.buddynotes.viewmodel.NotesViewModel
+import java.util.Calendar
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CreateFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CreateFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val binding by lazy { FragmentCreateBinding.inflate(layoutInflater) }
+    private var priority = "1"
+    private val noteViewModel:NotesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create, container, false)
+    ): View {
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CreateFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CreateFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+           fabCreate.setOnClickListener {
+                validateNotes()
             }
+            setPriorityClickListener(pGreen, "1")
+
+            pGreen.setOnClickListener {  }
+            setPriorityClickListener(pGreen, "1")
+
+            pYellow.setOnClickListener {
+                setPriorityClickListener(pYellow, "2")
+            }
+
+            pRed.setOnClickListener {
+                setPriorityClickListener(pRed, "3")
+            }
+
+
+        }
+
+
+
     }
+
+    private fun validateNotes() {
+        binding.apply {
+            if (etTitle.text.toString().isEmpty()) {
+                etTitle.error = "Empty"
+            } else {
+                etTitle.error = null
+                createNotes()
+            }
+        }
+    }
+
+    private fun setPriorityClickListener(imageView: ImageView, priorityValue: String) {
+        imageView.setOnClickListener {
+            priority = priorityValue
+            imageView.setImageResource(R.drawable.ic_done)
+
+            // Clear other image views
+            val otherImageViews = listOf(binding.pRed, binding.pYellow, binding.pGreen) - imageView
+            otherImageViews.forEach { it.setImageResource(0) }
+        }
+    }
+
+
+    private fun createNotes() {
+        binding.apply {
+            val title = etTitle.text.toString()
+            val subTitle = etSubTitle.text.toString()
+            val note = etNotes.text.toString()
+            val date = Calendar.getInstance().time.toString()
+
+            val noteData = Notes(null, title, subTitle, note, date, priority)
+
+            noteViewModel.insertNotes(noteData)
+            Toast.makeText(requireContext(), "Notes Created", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_createFragment_to_homeFragment)
+        }
+    }
+
 }
