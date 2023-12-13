@@ -1,10 +1,10 @@
 package com.manu.buddynotes.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.manu.buddynotes.R
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Handler(Looper.getMainLooper()).postDelayed({
-              startActivity(Intent(this@MainActivity, HomeMainActivity::class.java))
-            }, 2000)
+            startActivity(Intent(this@MainActivity, HomeMainActivity::class.java))
+            finish()
+        }, 2000)
     }
 }

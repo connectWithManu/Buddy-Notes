@@ -81,12 +81,15 @@ class HomeFragment : Fragment() {
 
         }
 
+
+
         binding.searchView.setOnQueryTextListener(object : OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                binding.searchView.queryHint = "Search here.."
                 filteredList(newText)
                 return true
             }
@@ -96,9 +99,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun filteredList(newText: String?) {
+        val queryText = newText?.lowercase()
         val filteredList = ArrayList<Notes>()
         for(notes in searchNotesList) {
-            if(notes.title.contains(newText!!) || notes.subTitle.contains(newText)) {
+            if(notes.title.lowercase().contains(queryText!!) || notes.subTitle.lowercase().contains(queryText)) {
                 filteredList.add(notes)
             }
 
