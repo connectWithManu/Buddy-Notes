@@ -5,12 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.manu.buddynotes.R
 import com.manu.buddynotes.adapter.NotesAdapter
+import com.manu.buddynotes.databinding.DialogDeleteBinding
+import com.manu.buddynotes.databinding.DialogExitBinding
 import com.manu.buddynotes.databinding.FragmentHomeBinding
 import com.manu.buddynotes.model.Notes
 import com.manu.buddynotes.viewmodel.NotesViewModel
@@ -74,12 +79,22 @@ class HomeFragment : Fragment() {
         }
 
         notesViewModel.getNotes().observe(viewLifecycleOwner) {notesList ->
-            searchNotesList.addAll(notesList)
-            binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            adapter = NotesAdapter(requireContext(), notesList)
-            binding.recyclerView.adapter = adapter
+            if(notesList.isEmpty()) {
+                binding.tvStatus.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.GONE
+            } else {
+                binding.tvStatus.visibility = View.GONE
+                binding.recyclerView.visibility = View.VISIBLE
+                searchNotesList.addAll(notesList)
+                binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                adapter = NotesAdapter(requireContext(), notesList)
+                binding.recyclerView.adapter = adapter
+            }
+
 
         }
+
+
 
 
 
@@ -96,7 +111,31 @@ class HomeFragment : Fragment() {
 
         })
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                showExitDialog()
+            }
+
+            })
+
+
     }
+
+    private fun showExitDialog() {
+        val bs = BottomSheetDialog(requireContext())
+        val bsl = DialogExitBinding.inflate(layoutInflater)
+        bs.setContentView(bsl.root)
+        bs.setCanceledOnTouchOutside(true)
+        bsl.btExit.setOnClickListener {
+            bs.dismiss()
+            requireActivity().finish()
+        }
+        bsl.btCancel.setOnClickListener {
+            bs.dismiss()
+        }
+        bs.show()
+    }
+
 
     private fun filteredList(newText: String?) {
         val queryText = newText?.lowercase()

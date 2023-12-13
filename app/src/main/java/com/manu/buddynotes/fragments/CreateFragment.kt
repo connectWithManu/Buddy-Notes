@@ -33,6 +33,10 @@ class CreateFragment : Fragment() {
 
         binding.pGreen.setImageResource(R.drawable.ic_done)
 
+        binding.btCreatBack.setOnClickListener {
+            findNavController().navigate(R.id.action_createFragment_to_homeFragment)
+        }
+
         binding.apply {
             fabCreate.setOnClickListener {
                 validateNotes()

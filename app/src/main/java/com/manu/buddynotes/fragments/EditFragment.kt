@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.manu.buddynotes.R
+import com.manu.buddynotes.databinding.DialogDeleteBinding
 import com.manu.buddynotes.databinding.FragmentEditBinding
 import com.manu.buddynotes.model.Notes
 import com.manu.buddynotes.viewmodel.NotesViewModel
@@ -57,6 +59,30 @@ class EditFragment : Fragment() {
             updateNotes(it)
         }
 
+        binding.btDelete.setOnClickListener {
+            showDeleteDialog()
+        }
+
+        binding.btEditBack.setOnClickListener {
+            findNavController().navigate(R.id.action_editFragment_to_homeFragment)
+        }
+
+    }
+
+    private fun showDeleteDialog() {
+        val bs = BottomSheetDialog(requireContext())
+        val bsl = DialogDeleteBinding.inflate(layoutInflater)
+        bs.setContentView(bsl.root)
+        bs.setCanceledOnTouchOutside(true)
+        bsl.btDelete.setOnClickListener {
+            noteViewModel.deleteNotes(noteData.data.id!!)
+            bs.dismiss()
+            findNavController().navigate(R.id.action_editFragment_to_homeFragment)
+        }
+        bsl.btCancel.setOnClickListener {
+            bs.dismiss()
+        }
+        bs.show()
     }
 
     private fun updateNotes(view: View) {
