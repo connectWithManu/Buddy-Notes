@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    //app colors
+    <color name="c10">#984062</color>
+    <color name="c30">#ffd9e2</color>
+    <color name="red">#ba1a1a</color>
+    <color name="c60">#ffdcc2</color>
 </resources>

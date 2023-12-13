@@ -10,6 +10,10 @@ android {
     namespace = "com.manu.buddynotes"
     compileSdk = 34
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.manu.buddynotes"
         minSdk = 26
