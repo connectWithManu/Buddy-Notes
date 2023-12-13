@@ -25,8 +25,7 @@ abstract class NotesDatabase: RoomDatabase() {
                     context,
                     NotesDatabase::class.java,
                     "BuddyNotes"
-                ).allowMainThreadQueries()
-                    .build()
+                ).build()
 
                 INSTANCE = roomDatabase
                 return roomDatabase
