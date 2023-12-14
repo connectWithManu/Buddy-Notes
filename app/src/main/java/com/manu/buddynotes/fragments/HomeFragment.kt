@@ -1,13 +1,16 @@
 package com.manu.buddynotes.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -20,6 +23,7 @@ import com.manu.buddynotes.databinding.DialogExitBinding
 import com.manu.buddynotes.databinding.FragmentHomeBinding
 import com.manu.buddynotes.model.Notes
 import com.manu.buddynotes.viewmodel.NotesViewModel
+import kotlin.math.log
 
 
 class HomeFragment : Fragment() {
@@ -62,7 +66,9 @@ class HomeFragment : Fragment() {
         }
 
 
+
         binding.btAll.setOnClickListener {
+            btnBackground(it as Button)
             notesViewModel.getNotes().observe(viewLifecycleOwner) {notesList ->
                 if(notesList.isEmpty()) {
                     binding.tvStatus.visibility = View.VISIBLE
@@ -78,6 +84,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.btLow.setOnClickListener {
+            btnBackground(it as Button)
             notesViewModel.getLowNotes().observe(viewLifecycleOwner) {notesList ->
                 if(notesList.isEmpty()) {
                     binding.tvStatus.visibility = View.VISIBLE
@@ -93,6 +100,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.btMedium.setOnClickListener {
+            btnBackground(it as Button)
             notesViewModel.getMediumNotes().observe(viewLifecycleOwner) {notesList ->
                 if(notesList.isEmpty()) {
                     binding.tvStatus.visibility = View.VISIBLE
@@ -108,6 +116,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.btHigh.setOnClickListener {
+            btnBackground(it as Button)
             notesViewModel.getHighNotes().observe(viewLifecycleOwner) {notesList ->
                 if(notesList.isEmpty()) {
                     binding.tvStatus.visibility = View.VISIBLE
@@ -164,6 +173,19 @@ class HomeFragment : Fragment() {
         bs.show()
     }
 
+    private fun btnBackground(button: Button) {
+
+        button.setBackgroundResource(R.drawable.shape_circle_primary)
+        button.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+        val otherButtons = listOf(binding.btAll, binding.btLow, binding.btMedium, binding.btHigh) - button
+        otherButtons.forEach {
+            it.setBackgroundResource(R.drawable.shape_circle)
+            Log.d("BBac", "btnBackground: ${it.background}")
+            it.setTextColor(ContextCompat.getColor(requireContext(), R.color.c10))
+
+        }
+    }
 
     private fun filteredList(newText: String?) {
         val queryText = newText?.lowercase()
