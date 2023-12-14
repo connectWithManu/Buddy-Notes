@@ -43,42 +43,6 @@ class HomeFragment : Fragment() {
 
         searchNotesList = ArrayList()
 
-        binding.btAll.setOnClickListener {
-            notesViewModel.getNotes().observe(viewLifecycleOwner) {notesList ->
-                binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                adapter = NotesAdapter(requireContext(), notesList)
-                binding.recyclerView.adapter = adapter
-
-            }
-        }
-
-        binding.btHigh.setOnClickListener {
-            notesViewModel.getHighNotes().observe(viewLifecycleOwner) {notesList ->
-                binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                adapter = NotesAdapter(requireContext(), notesList)
-                binding.recyclerView.adapter = adapter
-
-            }
-        }
-
-        binding.btMedium.setOnClickListener {
-            notesViewModel.getMediumNotes().observe(viewLifecycleOwner) {notesList ->
-                binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                adapter = NotesAdapter(requireContext(), notesList)
-                binding.recyclerView.adapter = adapter
-
-            }
-        }
-
-        binding.btLow.setOnClickListener {
-            notesViewModel.getLowNotes().observe(viewLifecycleOwner) {notesList ->
-                binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                adapter = NotesAdapter(requireContext(), notesList)
-                binding.recyclerView.adapter = adapter
-
-            }
-        }
-
         notesViewModel.getNotes().observe(viewLifecycleOwner) {notesList ->
             if(notesList.isEmpty()) {
                 binding.tvStatus.visibility = View.VISIBLE
@@ -87,12 +51,75 @@ class HomeFragment : Fragment() {
                 binding.tvStatus.visibility = View.GONE
                 binding.recyclerView.visibility = View.VISIBLE
                 searchNotesList.addAll(notesList)
-                binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 adapter = NotesAdapter(requireContext(), notesList)
+                binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 binding.recyclerView.adapter = adapter
             }
+        }
+
+        binding.fabAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_createFragment)
+        }
 
 
+        binding.btAll.setOnClickListener {
+            notesViewModel.getNotes().observe(viewLifecycleOwner) {notesList ->
+                if(notesList.isEmpty()) {
+                    binding.tvStatus.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
+                } else {
+                    binding.tvStatus.visibility = View.GONE
+                    binding.recyclerView.visibility = View.VISIBLE
+                    adapter = NotesAdapter(requireContext(), notesList)
+                    binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                    binding.recyclerView.adapter = adapter
+                }
+            }
+        }
+
+        binding.btLow.setOnClickListener {
+            notesViewModel.getLowNotes().observe(viewLifecycleOwner) {notesList ->
+                if(notesList.isEmpty()) {
+                    binding.tvStatus.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
+                } else {
+                    binding.tvStatus.visibility = View.GONE
+                    binding.recyclerView.visibility = View.VISIBLE
+                    adapter = NotesAdapter(requireContext(), notesList)
+                    binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                    binding.recyclerView.adapter = adapter
+                }
+            }
+        }
+
+        binding.btMedium.setOnClickListener {
+            notesViewModel.getMediumNotes().observe(viewLifecycleOwner) {notesList ->
+                if(notesList.isEmpty()) {
+                    binding.tvStatus.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
+                } else {
+                    binding.tvStatus.visibility = View.GONE
+                    binding.recyclerView.visibility = View.VISIBLE
+                    adapter = NotesAdapter(requireContext(), notesList)
+                    binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                    binding.recyclerView.adapter = adapter
+                }
+            }
+        }
+
+        binding.btHigh.setOnClickListener {
+            notesViewModel.getHighNotes().observe(viewLifecycleOwner) {notesList ->
+                if(notesList.isEmpty()) {
+                    binding.tvStatus.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
+                } else {
+                    binding.tvStatus.visibility = View.GONE
+                    binding.recyclerView.visibility = View.VISIBLE
+                    adapter = NotesAdapter(requireContext(), notesList)
+                    binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                    binding.recyclerView.adapter = adapter
+                }
+            }
         }
 
 
