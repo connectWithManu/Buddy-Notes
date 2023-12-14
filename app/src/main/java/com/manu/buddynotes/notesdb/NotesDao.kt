@@ -12,7 +12,7 @@ import com.manu.buddynotes.model.Notes
 @Dao
 interface NotesDao {
 
-    @Query("SELECT * FROM BuddyNotes")
+    @Query("SELECT * FROM BuddyNotes ORDER BY id DESC")
     fun getAllNotes(): LiveData<List<Notes>>
 
     @Query("SELECT * FROM BuddyNotes WHERE priority = 1")

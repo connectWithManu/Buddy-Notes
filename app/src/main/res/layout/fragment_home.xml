@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:text="Buddy Notes"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,20 +42,6 @@
 
     </androidx.appcompat.widget.SearchView>
 
-    <ImageButton
-        android:id="@+id/btAll"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/shape_circle"
-        android:src="@drawable/ic_filter"
-        app:layout_constraintEnd_toStartOf="@+id/btLow"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:tint="@color/c10" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
@@ -65,7 +52,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAll"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
         tools:listitem="@layout/item_notes" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -81,56 +68,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/white" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btLow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="2dp"
-        android:background="@drawable/shape_circle"
-        android:text="Low"
-        android:textAllCaps="false"
-        android:textColor="@color/c10"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btAll"
-        app:layout_constraintEnd_toStartOf="@+id/btMedium"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btAll"
-        app:layout_constraintTop_toTopOf="@+id/btAll" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btMedium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/shape_circle"
-        android:text="Medium"
-        android:textAllCaps="false"
-        android:textColor="@color/c10"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btLow"
-        app:layout_constraintEnd_toStartOf="@+id/btHigh"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btLow"
-        app:layout_constraintTop_toTopOf="@+id/btLow" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btHigh"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/shape_circle"
-        android:text="High"
-        android:textAllCaps="false"
-        android:textColor="@color/c10"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btMedium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btMedium"
-        app:layout_constraintTop_toTopOf="@+id/btMedium" />
-
     <TextView
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
@@ -142,5 +79,83 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btLow" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <ImageView
+            android:id="@+id/btAll"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+
+            android:layout_marginEnd="8dp"
+
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/shape_circle"
+            android:padding="10dp"
+            android:src="@drawable/ic_filter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btLow"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/c10" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btHigh"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_circle"
+            android:text="High"
+            android:textAllCaps="false"
+            android:textColor="@color/c10"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btMedium"
+            app:layout_constraintTop_toTopOf="@+id/btMedium" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btMedium"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/shape_circle"
+            android:text="Medium"
+            android:textAllCaps="false"
+            android:textColor="@color/c10"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btLow"
+            app:layout_constraintEnd_toStartOf="@+id/btHigh"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btLow"
+            app:layout_constraintTop_toTopOf="@+id/btLow" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btLow"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_circle"
+            android:text="Low"
+            android:textAllCaps="false"
+            android:textColor="@color/c10"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btMedium"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btAll"
+            app:layout_constraintTop_toTopOf="@+id/btAll" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
