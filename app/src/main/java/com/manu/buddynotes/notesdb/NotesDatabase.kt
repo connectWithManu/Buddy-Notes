@@ -14,13 +14,10 @@ abstract class NotesDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: NotesDatabase? = null
 
-        fun getInstance(context: Context): NotesDatabase {
-            val temp = INSTANCE
-            if(temp != null) {
-                return temp
-            }
 
-            synchronized(this) {
+        fun getInstance(context: Context): NotesDatabase {
+
+            return INSTANCE ?: synchronized(this) {
                 val roomDatabase = Room.databaseBuilder(
                     context,
                     NotesDatabase::class.java,
@@ -28,7 +25,7 @@ abstract class NotesDatabase: RoomDatabase() {
                 ).build()
 
                 INSTANCE = roomDatabase
-                return roomDatabase
+                roomDatabase
             }
         }
     }

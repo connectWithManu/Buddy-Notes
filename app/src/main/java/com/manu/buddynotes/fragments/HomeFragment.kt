@@ -174,7 +174,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun btnBackground(button: Button) {
-
         button.setBackgroundResource(R.drawable.shape_circle_primary)
         button.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
